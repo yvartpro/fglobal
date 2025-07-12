@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom"
 import { Header } from "./components/Header"
+import team from './img/team.jpg'
 
 const Home = () => {
   
@@ -30,11 +30,12 @@ const Home = () => {
               See Trainings
             </a>
           </div>
+      
         </div>
         <div className="hidden md:block flex-1 ml-8">
           <img
-            src="/images/hero-illustration.png"
-            alt="Empowerment Illustration"
+            src={team}
+            alt="Empowerment image"
             className="w-full max-w-xs mx-auto rounded-xl shadow"
             style={{ minWidth: 220 }}
           />
