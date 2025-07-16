@@ -47,34 +47,52 @@ export const countryData = {
       ],
     },
     packageImages: [
-      "/images/packages/kenya1.jpg",
-      "/images/packages/kenya2.jpg",
-      "/images/packages/kenya3.jpg"
+      "/images/packages/ke_neo.jpeg",
+      "/images/packages/ke_new_pack.jpeg",
+      "/images/packages/cap_mega.jpeg"
     ],
     products: [
   {
     name: "C24/7 Natura-Ceuticals",
     description: "Boosts immune system & cellular protection.",
     price: "Ksh 3,000",
-    image: "/images/products/c247.jpg",
+    image: "/images/products/C247.png",
   },
   {
     name: "Complete Phyto-Energizer",
     description: "All-in-one nutrition support.",
     price: "Ksh 2,500",
-    image: "/images/products/complete.jpg",
+    image: "/images/products/complete.webp",
   },
   {
     name: "RestorLyf Longevity Formula",
     description: "Promotes anti-aging & longevity.",
     price: "Ksh 2,800",
-    image: "/images/products/restorlyf.jpg",
+    image: "/images/products/restorlyf.jpeg",
   },
   {
     name: "Choleduz Omega Supreme",
     description: "Supports heart & brain health.",
     price: "Ksh 2,200",
     image: "/images/products/choleduz.jpg",
+  },
+  {
+    name: "Coffee Original",
+    description: "No destroying cafeine.",
+    price: "Ksh 2,200",
+    image: "/images/products/original.png",
+  },
+  {
+    name: "Coffee Latte",
+    description: "For children, contains Omega 3.",
+    price: "Ksh 2,200",
+    image: "/images/products/latte.png",
+  },
+  {
+    name: "Capuccino",
+    description: "Supports heart & brain health.",
+    price: "Ksh 2,200",
+    image: "/images/products/capuccino.png",
   },
 ],
     faq: [
@@ -139,6 +157,50 @@ export const countryData = {
         "Inkunga na Coaching",
       ],
     },
+    products: [
+  {
+    name: "C24/7 Natura-Ceuticals",
+    description: "Boosts immune system & cellular protection.",
+    price: "Ksh 3,000",
+    image: "/images/products/C247.png",
+  },
+  {
+    name: "Complete Phyto-Energizer",
+    description: "All-in-one nutrition support.",
+    price: "Ksh 2,500",
+    image: "/images/products/complete.webp",
+  },
+  {
+    name: "RestorLyf Longevity Formula",
+    description: "Promotes anti-aging & longevity.",
+    price: "Ksh 2,800",
+    image: "/images/products/restorlyf.jpeg",
+  },
+  {
+    name: "Choleduz Omega Supreme",
+    description: "Supports heart & brain health.",
+    price: "Ksh 2,200",
+    image: "/images/products/choleduz.jpg",
+  },
+  {
+    name: "Coffee Original",
+    description: "No destroying cafeine.",
+    price: "Ksh 2,200",
+    image: "/images/products/original.png",
+  },
+  {
+    name: "Coffee Latte",
+    description: "For children, contains Omega 3.",
+    price: "Ksh 2,200",
+    image: "/images/products/latte.png",
+  },
+  {
+    name: "Capuccino",
+    description: "Supports heart & brain health.",
+    price: "Ksh 2,200",
+    image: "/images/products/capuccino.png",
+  },
+],
     faq: [
       {
         question: "Ubu bucuruzi bumenyekanye gute?",

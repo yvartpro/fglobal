@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom"
 import { countryData } from "../assets/countryData"
 import { FAQ } from "../components/Faq"
 import { Packages } from "../components/Packages"
+import { VideoPlayer } from "../components/VideoPlayer"
 import { useEffect } from "react"
 
 export default function PresentationPage() {
@@ -23,7 +24,7 @@ export default function PresentationPage() {
   return (
     <main className="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans">
       {/* Hero */}
-      <section className="px-4 py-16 bg-gradient-to-r from-orange-100 to-white dark:from-gray-800 dark:to-gray-900 border-b dark:border-gray-700">
+      <section className="px-4 py-16 bg-gradient-to-t from-orange-100 to-white dark:from-gray-800 dark:to-gray-900 border-b dark:border-gray-700">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-12">
           <div>
             <h1 className="text-3xl sm:text-4xl font-extrabold text-orange-500 dark:text-orange-400 mb-4">
@@ -34,14 +35,7 @@ export default function PresentationPage() {
             </p>
           </div>
           <div>
-            <video
-              controls
-              poster={data.video.poster}
-              className="w-full rounded-xl shadow-md border border-gray-200 dark:border-gray-700"
-            >
-              <source src={data.video.url} type="video/mp4" />
-              Your browser does not support this video.
-            </video>
+            <VideoPlayer src={data.video.url} poster={data.video.poster} />
             <p className="text-sm text-center mt-2 text-gray-500 dark:text-gray-400">
               {data.video.label}
             </p>

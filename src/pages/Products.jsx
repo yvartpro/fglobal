@@ -30,7 +30,7 @@ export default function Products() {
               <img
                 src={product.image}
                 alt={product.name}
-                className="w-full h-40 object-cover rounded-md mb-4"
+                className="w-full object-cover rounded-md mb-4"
               />
               <h3 className="text-lg font-semibold mb-2 text-orange-500">
                 {product.name}

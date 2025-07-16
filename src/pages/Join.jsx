@@ -22,7 +22,7 @@ export default function JoinPage() {
   return (
     <main className="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans">
       {/* Hero */}
-      <section className="px-4 py-16 bg-gradient-to-r from-orange-100 to-white dark:from-gray-800 dark:to-gray-900 border-b dark:border-gray-700">
+      <section className="px-4 py-16 bg-gradient-to-t from-orange-100 to-white dark:from-gray-800 dark:to-gray-900 border-b dark:border-gray-700">
         <div className="max-w-6xl mx-auto text-center">
           <h1 className="text-3xl sm:text-4xl font-extrabold text-orange-500 dark:text-orange-400 mb-4">
             Join {data.name}

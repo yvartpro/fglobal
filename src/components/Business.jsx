@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useState } from "react"
+import { VideoPlayer } from "./VideoPlayer"
 
 const countries = [
   {
     code: "rdc",
     name: "RDC (Congo)",
     language: "Français",
-    videoUrl: "https://yourdomain.com/videos/rdc.mp4",
+    videoUrl: "/videos/presentations/drc_business_presentation.mp4",
     description:
       "Rejoignez AIM Global en RDC avec le Global Package (280 USD) ou Neoverse (430 USD) et bénéficiez de 7 sources de revenus.",
   },
@@ -13,7 +14,7 @@ const countries = [
     code: "kenya",
     name: "Kenya",
     language: "English",
-    videoUrl: "https://yourdomain.com/videos/kenya.mp4",
+    videoUrl: "/videos/presentations/ke_presentation.mp4",
     description:
       "Join AIM Global in Kenya with the Global or Neoverse Package. Learn how to earn in the digital economy.",
   },
@@ -21,7 +22,7 @@ const countries = [
     code: "tanzania",
     name: "Tanzania",
     language: "Kiswahili",
-    videoUrl: "https://yourdomain.com/videos/tanzania.mp4",
+    videoUrl: "/videos/presentations/tz_presentation.mp4",
     description:
       "Jifunze jinsi ya kuanza AIM Global nchini Tanzania na kupata mapato kwa kutumia simu yako tu.",
   },
@@ -29,14 +30,14 @@ const countries = [
     code: "burundi",
     name: "Burundi",
     language: "Kirundi",
-    videoUrl: "https://yourdomain.com/videos/burundi.mp4",
+    videoUrl: "/videos/presentations/rw_presentation.mp4",
     description:
       "Tungura ubuzima bwawe mu Burundi biciye muri AIM Global. Tangura n’idandaza rya 2,200,000 Fbu gusa.",
   },
-];
+]
 
 export const Business = ()=> {
-  const [selected, setSelected] = useState(countries[0]);
+  const [selected, setSelected] = useState(countries[0])
 
   return (
     <section className="bg-gray-50 dark:bg-gray-800 px-4 py-20 border-t border-gray-200 dark:border-gray-700">
@@ -54,8 +55,8 @@ export const Business = ()=> {
             className="bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 px-4 py-2 rounded-md text-sm focus:outline-none"
             value={selected.code}
             onChange={(e) => {
-              const c = countries.find((item) => item.code === e.target.value);
-              setSelected(c);
+              const c = countries.find((item) => item.code === e.target.value)
+              setSelected(c)
             }}
           >
             {countries.map((c) => (
@@ -81,15 +82,7 @@ export const Business = ()=> {
           </div>
 
           <div>
-            <video
-              className="w-full rounded-lg"
-              controls
-              preload="none"
-              poster={`/images/posters/${selected.code}.jpg`}
-            >
-              <source src={selected.videoUrl} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+            <VideoPlayer src={selected.videoUrl} poster={`/images/posters/${selected.code}.jpg`} />
           </div>
         </div>
       </div>

@@ -15,11 +15,11 @@ export const Packages = ({ images = [] })=> {
               <img
                 src={img}
                 alt={`Package ${idx + 1}`}
-                className="w-full h-48 object-cover rounded-t-xl"
+                className="w-full  object-fill rounded-xl"
               />
-              <p className="text-sm text-gray-500 dark:text-gray-400 p-2">
+              {/* <p className="text-sm text-gray-500 dark:text-gray-400 p-2">
                 Package {idx + 1}
-              </p>
+              </p> */}
             </div>
           ))}
         </div>

@@ -9,28 +9,28 @@ className="bg-white dark:bg-gray-900 px-4 py-20 border-t border-gray-100 dark:bo
     </p>
 
 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-  <div className="border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md hover:-translate-y-1 transition-all duration-200">
+  <div className="border border-gray-200 dark:border-gray-700 p-6 rounded-xl transition-all duration-200 hover:shadow-lg hover:-translate-y-1 hover:bg-orange-50 hover:border-orange-500 active:bg-orange-100 active:border-orange-500 dark:hover:bg-gray-800 dark:active:bg-gray-900">
     <h3 className="text-base font-semibold text-gray-800 dark:text-gray-100 mb-2">🌍 Global Reach</h3>
     <p className="text-sm text-gray-600 dark:text-gray-400">
       Operate your business from anywhere. We empower members in 7+ countries — and growing.
     </p>
   </div>
 
-  <div className="border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md hover:-translate-y-1 transition-all duration-200">
+  <div className="border border-gray-200 dark:border-gray-700 p-6 rounded-xl transition-all duration-200 hover:shadow-lg hover:-translate-y-1 hover:bg-orange-50 hover:border-orange-500 active:bg-orange-100 active:border-orange-500 dark:hover:bg-gray-800 dark:active:bg-gray-900">
     <h3 className="text-base font-semibold text-gray-800 dark:text-gray-100 mb-2">🕒 Time Freedom</h3>
     <p className="text-sm text-gray-600 dark:text-gray-400">
       Work from your phone. Set your own schedule. Finally own your time and your life.
     </p>
   </div>
 
-  <div className="border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md hover:-translate-y-1 transition-all duration-200">
+  <div className="border border-gray-200 dark:border-gray-700 p-6 rounded-xl transition-all duration-200 hover:shadow-lg hover:-translate-y-1 hover:bg-orange-50 hover:border-orange-500 active:bg-orange-100 active:border-orange-500 dark:hover:bg-gray-800 dark:active:bg-gray-900">
     <h3 className="text-base font-semibold text-gray-800 dark:text-gray-100 mb-2">🎓 Proven Mentorship</h3>
     <p className="text-sm text-gray-600 dark:text-gray-400">
       Get direct training from real leaders. We grow together through inspiration and example.
     </p>
   </div>
 
-  <div className="border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md hover:-translate-y-1 transition-all duration-200">
+  <div className="border border-gray-200 dark:border-gray-700 p-6 rounded-xl transition-all duration-200 hover:shadow-lg hover:-translate-y-1 hover:bg-orange-50 hover:border-orange-500 active:bg-orange-100 active:border-orange-500 dark:hover:bg-gray-800 dark:active:bg-gray-900">
     <h3 className="text-base font-semibold text-gray-800 dark:text-gray-100 mb-2">🚀 No Degree Needed</h3>
     <p className="text-sm text-gray-600 dark:text-gray-400">
       You don’t need a title to lead. If you have a dream, we’ll help you build it — step by step.

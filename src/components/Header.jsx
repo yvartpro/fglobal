@@ -13,10 +13,10 @@ export const Header = () => {
         const [hovered, setHovered] = useState(null);
 
         return (
-            <header className="bg-primary-light dark:secondary-light shadow-md sticky top-0 z-50">
+            <header className="bg-white dark:secondary-light shadow-md sticky top-0 z-50">
                 <div className="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
                     <a href="/" className="flex items-center gap-2">
-                        <span className="text-xl font-bold text-white dark:text-primary-light tracking-tight">
+                        <span className="text-xl font-bold text-primary-light dark:text-primary-light tracking-tight">
                             Ferdinand Global
                         </span>
                     </a>
@@ -31,7 +31,7 @@ export const Header = () => {
                             >
                                 <a
                                     href={link.href}
-                                    className="text-white dark:text-orange-300 font-medium px-2 py-1 rounded hover:bg-orange-100 dark:hover:bg-gray-700 transition"
+                                    className="text-primary-light dark:text-orange-300 font-medium px-2 py-1 rounded hover:bg-orange-100 dark:hover:bg-gray-700 transition"
                                 >
                                     {link.name}
                                 </a>
@@ -55,7 +55,7 @@ export const Header = () => {
                     </nav>
                     {/* Mobile Hamburger */}
                     <button
-                        className="md:hidden p-2 rounded text-white dark:text-primary-light focus:outline-none"
+                        className="md:hidden p-2 rounded text-primary-light dark:text-primary-dark focus:outline-none"
                         onClick={() => setOpen(true)}
                         aria-label="Open menu"
                     >
