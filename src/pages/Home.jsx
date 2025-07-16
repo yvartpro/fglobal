@@ -1,9 +1,11 @@
+import { useEffect } from "react"
 import { Hero } from "../components/Hero"
 import { WhyJoin } from "../components/WhyJoin"
 import { NewEra } from "../components/NewEra"
 import { Testimonials } from "../components/Testimonials"
 import { Business } from "../components/Business"
-import { useEffect } from "react"
+import { CallToAction } from "../components/CTA"
+import { Footer } from "../components/Footer"
 
 export default function Home() {
   useEffect(() => {
@@ -17,6 +19,8 @@ export default function Home() {
       <NewEra/>
       <Testimonials/>
       <Business/>
+      <CallToAction/>
+      <Footer/>
     </main>
   )
 }

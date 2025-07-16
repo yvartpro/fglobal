@@ -4,7 +4,6 @@ export const Header = () => {
     const navLinks = [
         { name: "Home", href: "/", desc: "Welcome to Ferdinand Global" },
         { name: "About", href: "/about", desc: "Our story & vision" },
-        { name: "Join Us", href: "/join", desc: "Business opportunity" },
         { name: "Products", href: "/products", desc: "Wellness & packages" },
         { name: "Testimonials", href: "/testimonials", desc: "Success stories" },
         { name: "Contact", href: "/contact", desc: "Get in touch" },
