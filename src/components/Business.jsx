@@ -36,8 +36,16 @@ const countries = [
   },
 ]
 
-export const Business = ()=> {
-  const [selected, setSelected] = useState(countries[0])
+const countryFlags = {
+  rdc: "🇨🇩",
+  kenya: "🇰🇪",
+  tanzania: "🇹🇿",
+  burundi: "🇧🇮",
+};
+
+export const Business = () => {
+  const [selected, setSelected] = useState(countries[0]);
+  const [open, setOpen] = useState(false);
 
   return (
     <section className="bg-gray-50 dark:bg-gray-800 px-4 py-20 border-t border-gray-200 dark:border-gray-700">
@@ -48,23 +56,42 @@ export const Business = ()=> {
         <p className="text-center text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-10 max-w-2xl mx-auto">
           Select your country to explore the opportunity in your local language and currency.
         </p>
-
-        {/* Country selector */}
+        {/* Custom Country Dropdown */}
         <div className="flex justify-center mb-8">
-          <select
-            className="bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 px-4 py-2 rounded-md text-sm focus:outline-none"
-            value={selected.code}
-            onChange={(e) => {
-              const c = countries.find((item) => item.code === e.target.value)
-              setSelected(c)
-            }}
-          >
-            {countries.map((c) => (
-              <option key={c.code} value={c.code}>
-                {c.name} ({c.language})
-              </option>
-            ))}
-          </select>
+          <div className="relative w-full max-w-xs">
+            <button
+              className="w-full flex items-center justify-between bg-white dark:bg-gray-900 border-2 border-orange-400 px-4 py-2 rounded-md text-base font-semibold shadow focus:outline-none focus:ring-2 focus:ring-orange-400"
+              onClick={() => setOpen((o) => !o)}
+              aria-haspopup="listbox"
+              aria-expanded={open}
+            >
+              <span className="flex items-center gap-2">
+                <span className="text-xl">{countryFlags[selected.code]}</span>
+                <span>{selected.name} ({selected.language})</span>
+              </span>
+              <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            {open && (
+              <ul className="absolute left-0 w-full mt-2 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-md shadow-lg z-10" role="listbox">
+                {countries.map((c) => (
+                  <li
+                    key={c.code}
+                    className={`flex items-center gap-2 px-4 py-2 cursor-pointer hover:bg-orange-100 dark:hover:bg-orange-900 transition ${selected.code === c.code ? 'bg-orange-50 dark:bg-orange-800 font-bold' : ''}`}
+                    onClick={() => {
+                      setSelected(c);
+                      localStorage.setItem("country", c.code);
+                      setOpen(false);
+                    }}
+                    role="option"
+                    aria-selected={selected.code === c.code}
+                  >
+                    <span className="text-xl">{countryFlags[c.code]}</span>
+                    <span>{c.name} ({c.language})</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
         </div>
 
         {/* Summary + Video */}
@@ -75,9 +102,14 @@ export const Business = ()=> {
             </p>
             <a
               href={`/presentation/${selected.code}`}
-              className="inline-block bg-orange-400 hover:bg-orange-500 text-white text-sm font-medium px-5 py-2 rounded-md transition"
+              className="inline-block bg-orange-400 hover:bg-orange-500 text-white text-sm font-medium px-5 py-2 rounded-md transition group relative overflow-hidden"
             >
-              View Full Details →
+              <span className="flex items-center gap-2">
+                View Full Details
+                <span className="inline-block transform transition-transform group-hover:translate-x-2">
+                  &rarr;
+                </span>
+              </span>
             </a>
           </div>
 

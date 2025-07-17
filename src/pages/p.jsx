@@ -2,11 +2,13 @@ import { useParams } from "react-router-dom"
 import { countryData } from "../assets/countryData"
 import { FAQ } from "../components/Faq"
 import { useEffect } from "react"
+import { useWhatsAppNumber } from "../WhatsAppNumberContext"
 
 export default function PresentationPage() {
   const { country } = useParams()
   const data = countryData[country]
-console.log(data)
+  const whatsappNumber = useWhatsAppNumber();
+  console.log(data)
   useEffect(() => {
     if (data) document.title = `Presentation - ${data.name}`
   }, [data])
@@ -119,7 +121,7 @@ console.log(data)
               Join Now
             </a>
             <a
-              href="https://wa.me/254111878523"
+              href={`https://wa.me/${whatsappNumber.replace(/[^\d]/g, "")}`}
               target="_blank"
               rel="noopener noreferrer"
               className="border border-white text-white font-semibold px-6 py-3 rounded-full hover:bg-orange-300 transition"

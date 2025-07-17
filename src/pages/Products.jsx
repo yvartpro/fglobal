@@ -17,14 +17,15 @@ export default function Products() {
   return (
     <main className="bg-white dark:bg-gray-900 px-4 py-16 text-gray-800 dark:text-gray-200 font-sans">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-3xl font-bold text-center mb-10">
-          Our Wellness Products – {data.name}
+        <h1 className="text-lg md:text-xl font-bold text-center mb-10" data-aos="fade-up" data-aos-duration="700">
+          Our Wellness Products
         </h1>
-
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {data.products.map((product, idx) => (
             <div
               key={idx}
+              data-aos="fade-up"
+              data-aos-delay={idx * 100}
               className="bg-gray-50 dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4 hover:shadow-md transition"
             >
               <img

@@ -4,12 +4,12 @@ export const countryData = {
     name: "Kenya",
     language: "English",
     currency: "KES",
-    contact: "https://wa.me/254111878523",
+    contact: null, // WhatsApp contact will be set dynamically
     theme: {
       accent: "orange-400",
     },
     video: {
-      url: "https://yourdomain.com/videos/kenya.mp4",
+      url: "/videos/presentations/ke_presentation.mp4",
       poster: "/images/posters/kenya.jpg",
       label: "Ed Plan 3.0 – English",
     },
@@ -116,12 +116,12 @@ export const countryData = {
     name: "Burundi",
     language: "Kirundi",
     currency: "Fbu",
-    contact: "https://wa.me/257000000000",
+    contact: null, // WhatsApp contact will be set dynamically
     theme: {
       accent: "orange-500",
     },
     video: {
-      url: "https://yourdomain.com/videos/burundi.mp4",
+      url: "/videos/presentations/rw_presentation.mp4",
       poster: "/images/posters/burundi.jpg",
       label: "Kirundi Presentation",
     },

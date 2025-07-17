@@ -16,7 +16,7 @@ export const FAQ = ({ title = "Frequently Asked Questions", data = defaultFaqs }
   return (
     <section className="px-4 py-20 bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-10">
+        <h2 className="text-xl font-bold text-center text-gray-800 dark:text-white mb-10">
           {title}
         </h2>
 

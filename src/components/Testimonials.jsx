@@ -42,9 +42,12 @@ className="relative min-h-[70vh] md:min-h-[80vh] flex items-center bg-fixed bg-c
     <div className="mt-12 text-center">
       <a
         href="/testimonials"
-        className="inline-block text-sm font-medium text-orange-400 hover:text-orange-500 transition"
+        className="inline-block bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm text-sm font-medium text-orange-400 hover:text-orange-500 transition group relative overflow-hidden"
       >
-        View More Testimonials →
+        <span className="flex items-center gap-2">
+          View More Testimonials
+          <span className="inline-block transform transition-transform group-hover:translate-x-2">&rarr;</span>
+        </span>
       </a>
     </div>
   </div>

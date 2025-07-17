@@ -123,12 +123,19 @@ export const VideoPlayer = ({ src, poster }) => {
  return (
   <div className="relative w-full max-w-3xl mx-auto aspect-video rounded-lg overflow-hidden shadow-lg bg-black">
     {showPoster && poster && (
-      <img
-        src={poster}
-        alt="Video poster"
-        className="absolute inset-0 w-full h-full object-cover z-10 cursor-pointer"
-        onClick={handlePlay}
-      />
+      <div className="absolute inset-0 w-full h-full flex items-center justify-center z-10 cursor-pointer" onClick={handlePlay}>
+        <img
+          src={poster}
+          alt="Video poster"
+          className="w-full h-full object-cover rounded-lg"
+        />
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <svg width="64" height="64" viewBox="0 0 64 64" fill="none" className="drop-shadow-lg">
+            <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.5)" />
+            <polygon points="26,20 48,32 26,44" fill="#fff" />
+          </svg>
+        </div>
+      </div>
     )}
     <video
       ref={videoRef}
@@ -168,8 +175,8 @@ export const VideoPlayer = ({ src, poster }) => {
           style={{ accentColor: accent, height: '4px' }}
           className="w-full h-1 rounded-lg"
         />
-        <span className="text-xs text-white w-14 text-right">{formatTime(currentTime)}</span>
-        <span className="text-xs text-white w-14 text-right">-{formatTime(duration - currentTime)}</span>
+        <span className="text-xs text-primary-light dark:text-primary-dark w-14 text-right">{formatTime(currentTime)}</span>
+        <span className="text-xs text-primary-light dark:text-primary-dark w-14 text-right">-{formatTime(duration - currentTime)}</span>
         <button
           className="p-1 rounded-full"
           style={{ background: 'transparent' }}

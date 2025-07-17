@@ -1,11 +1,14 @@
 import { useState } from "react";
 
 export const Header = () => {
+    const country = localStorage.getItem("country") || null
     const navLinks = [
         { name: "Home", href: "/", desc: "Welcome to Ferdinand Global" },
-        { name: "About", href: "/about", desc: "Our story & vision" },
+        { name: "Blog", href: "/blog", desc: "Our story & vision" },
+        ...(country ? [{ name: "Presentation", href: `/presentation/${country}`, desc: "Watch our presentation" }] : []),
         { name: "Products", href: "/products", desc: "Wellness & packages" },
         { name: "Testimonials", href: "/testimonials", desc: "Success stories" },
+        ...(country ? [{ name: "Join Us", href: `/join/${country}`, desc: "Join our team now" }] : []),
         { name: "Contact", href: "/contact", desc: "Get in touch" },
     ];
 
