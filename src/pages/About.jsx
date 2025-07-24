@@ -30,7 +30,7 @@ export default function About() {
 
           { loadingPosts ?  <PostsShimmer/>  :
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {postsInLanguage.map((post, idx) => {
+            {posts.map((post, idx) => {
               // Determine post type based on media URL
               const postType = post.medias.endsWith('.mp4') ? 'video' : 'image';
               // If post type is not image or video, skip rendering
