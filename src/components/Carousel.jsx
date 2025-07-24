@@ -39,7 +39,7 @@ export const PortraitCarousel = () => {
         {images.map((img, idx) => (
           <div
             key={idx}
-            className="flex-shrink-0 w-4/5 snap-start rounded-xl shadow-lg bg-white dark:bg-gray-900 overflow-hidden"
+            className="flex-shrink-0 w-4/5 snap-start rounded-sm p-2 bg-white dark:bg-gray-900 overflow-hidden"
             style={{ aspectRatio: "3 / 4" }}
           >
             <img
