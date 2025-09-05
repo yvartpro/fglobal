@@ -4,6 +4,7 @@ import Login from "./Login"
 import Home from "./pages/Home"
 import PresentationDRC from "./pages/Presentation"
 import Join from "./pages/Join"
+import Messages from "./pages/Messages"
 import Products from "./pages/Products"
 import Testimonials from "./pages/Testimonials"
 import Contact from "./pages/Contact"
@@ -13,14 +14,14 @@ import "aos/dist/aos.css"
 import { WhatsAppFab } from "./components/WhatsAppFab"
 import About from "./pages/About"
 import Blog from "./pages/Blog"
-import { WhatsAppNumberContext } from "./WhatsAppNumberContext"
+import { WhatsAppNumberContext, useWhatsAppNumber } from "./WhatsAppNumberContext"
 import axios from "axios"
 import { useGlobalContext } from "./GlobalContext"
 import { locales } from "./assets/locales"
 
-const WHATSAPP_NUMBER = "254782025531";
 
 const App = () => {
+const WHATSAPP_NUMBER = useWhatsAppNumber()
   const { setTestimonials, setPresentations, posts, setLoadingVideo, setLoadingPosts, setPresentation, setPosts, country, language, setLocale, setProducts, setRawProducts } = useGlobalContext()
   const [videos, setVideos] = useState([])
   
@@ -93,6 +94,7 @@ const App = () => {
           <Route path="/contact" element={<Contact/>}/>
           <Route path="/blog" element={<Blog/>}/>
           <Route path="/about" element={<About/>}/>
+          <Route path="/message" element={<Messages/>}/>
         </Routes>
       </Router>
     </WhatsAppNumberContext.Provider>

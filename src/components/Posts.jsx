@@ -1,19 +1,22 @@
 import { useEffect, useState } from "react";
+import { VideoPlayer } from "./VideoPlayer";
 
 const posts = [
   {
-    image: "/images/ere_1.jpeg",
-    alt: "Nomads and early agriculture",
-    title: "From Nomadism to Agriculture",
+    src: "https://ferdinandglobal.com/videos/evolution.mp4",
+    alt: "Business owner",
+    title: "The Old and Traditionl School System",
+    poster: "/images/evolution.jpg",
     description:
-      "Humanity evolved from wandering tribes to settled farmers. This era marks the birth of civilization, community, and the first steps toward progress.",
+      "We were tought to go to school, get good grades, secure job -  and life will be set. But the World has changed. Degrees don't guarantee security, and traditional jobs are no longer safe. Own your Business, be Independent. It's time to rethink the goood path to success.",
   },
   {
-    image: "/images/ere_2.jpeg",
-    alt: "Student graduated",
-    title: "Beyond School: Real Leverage in a Changing World",
+    src: "https://ferdinandglobal.com/videos/pipeline.mp4",
+    alt: "Pablo vs Bruno's Story - The Power of Leverage",
+    title: "Power of leverage",
+    poster: "/images/pablo.jpg",
     description:
-      "Success is no longer just about school achievements. With robotics and technology transforming jobs, learning to use true leverage is essential for the future.",
+      "Bruno worked hard, carrying buckets of waater from one mountain to another every day. Pablo instead, built a piipeline. While Bruno sweated daily, Pablo created a system that worked even while he rested. This timeless story reveals a powerfull truth: Hard Work Without Leverage Keeps You Stuck. Want real freedom ? Learn to build pipelines, not just cary buckets.",
   },
 ];
 
@@ -29,12 +32,7 @@ export const Posts = () => {
 		<section className="w-full flex justify-center items-center py-12 px-4 bg-gradient-to-br from-orange-50 via-white to-gray-100">
 			<div className="w-full max-w-2xl bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-6 md:p-10 flex flex-col items-center">
 				<div className="relative w-full flex flex-col items-center">
-					<img
-						src={post.image}
-						alt={post.alt}
-						className="w-full max-w-xs md:max-w-md rounded-xl shadow mb-6 object-cover"
-						style={{ aspectRatio: "16/9" }}
-					/>
+					<VideoPlayer src={post.src} poster={post.poster}/>
 					<h2 className="text-lg md:text-2xl font-bold text-gray-900 dark:text-white mb-2 text-center">
 						{post.title}
 					</h2>

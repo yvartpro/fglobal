@@ -1,6 +1,8 @@
 import { useGlobalContext } from "../GlobalContext";
+import { useWhatsAppNumber } from "../WhatsAppNumberContext";
 
 export const Footer = ()=> {
+  const whatsApp = useWhatsAppNumber()
   const { locale } = useGlobalContext();
 return <footer
 className="bg-gray-100 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 py-8 px-4">
@@ -30,8 +32,8 @@ className="bg-gray-100 dark:bg-gray-900 border-t border-gray-200 dark:border-gra
       <h4 className="font-semibold text-gray-800 dark:text-white mb-2">Contact</h4>
       <ul className="space-y-1">
         <li>Email: <a href="mailto:ferdmbonimpa@gmail.com" className="hover:underline">ferdmbonimpa@gmail.com</a></li>
-        <li>{locale.f_phone}: +254111878523</li>
-        <li>WhatsApp: +254782025531</li>
+        <li>{locale.f_phone}: <a href={`tel:${whatsApp}`} target="_blank" rel="noopener noreferrer">+{whatsApp}</a></li>
+        <li>WhatsApp: +{whatsApp}</li>
         <li>{locale.f_address}: Kenyatta Avenue, Caxton House, 1st Floor</li>
       </ul>
     </div>

@@ -5,6 +5,8 @@ import { PostsShimmer } from "../components/PostsShimmer";
 export const Testimonials = () => {
   const { testimonials, loadingVideo, locale } = useGlobalContext();
 
+  const firstVideo = !loadingVideo && testimonials.length > 0 ? testimonials[0] : null;
+
   return (
     <section className="relative min-h-[70vh] md:min-h-[80vh] flex items-center bg-fixed bg-cover bg-center bg-no-repeat px-4 py-10 md:py-20">
       <div className="max-w-6xl mx-auto w-full">
@@ -17,20 +19,23 @@ export const Testimonials = () => {
 
         {/* Loading Shimmer */}
         {loadingVideo ? (
-          <PostsShimmer/>          
+          <PostsShimmer />
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {testimonials.map((t, idx) => (
+          firstVideo && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div
-                key={idx}
                 className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm hover:shadow-md transition"
               >
-                <VideoPlayer src={t.videos} poster={t.poster} />
-                <h3 className="font-semibold mt-4 text-gray-800 dark:text-gray-100">{t.titre}</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">{t.detail}</p>
+                <VideoPlayer src={firstVideo.videos} poster={firstVideo.poster} />
+                <h3 className="font-semibold mt-4 text-gray-800 dark:text-gray-100">
+                  {firstVideo.titre}
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                  {firstVideo.detail}
+                </p>
               </div>
-            ))}
-          </div>
+            </div>
+          )
         )}
 
         {/* View More Button */}
