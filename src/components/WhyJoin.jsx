@@ -38,14 +38,6 @@ export const WhyJoin = () => {
           </p>
         </div>
       </div>
-      <div className="mt-12 flex justify-center" data-aos="zoom-in" data-aos-delay="500">
-        <a
-          href={`/presentation/${country}`}
-          className="bg-orange-500 text-white font-semibold px-8 py-4 rounded-full shadow hover:bg-orange-600 transition text-lg"
-        >
-          {locale.join_now_button}
-        </a>
-      </div>
     </div>
   </section>
 );}

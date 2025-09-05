@@ -1,9 +1,13 @@
 import { useParams } from "react-router-dom";
 import { useGlobalContext } from "../GlobalContext";
+import { useWhatsAppNumber } from "../WhatsAppNumberContext";
 
 export const Hero = ()=> {
   const { locale, country } = useGlobalContext();
+  const whatsappNumber = useWhatsAppNumber();
 
+  const message = encodeURIComponent(`Hello Ferdinand, I want to know more about Ferdinand Global services.`);
+  const whatsappLink = `https://wa.me/${whatsappNumber.replace(/[^\d]/g, "")}?text=${message}`;
 
 return(
 <section
@@ -28,18 +32,20 @@ return(
       </p>
       <div className="mt-6 flex justify-center md:justify-start gap-4 flex-wrap">
         <a
-          href={`/presentation/${country}`}
+            href={whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
           className="bg-orange-400 text-white px-6 py-3 rounded-full text-sm font-semibold shadow hover:bg-orange-500 transition"
           data-aos="zoom-in" data-aos-delay="200"
         >
-          {locale.get_started}
+          {locale.cta_whatsapp_button}
         </a>
         <a
-          href="/blog"
+          href={`/presentation/${country}`}
           className="border border-orange-400 text-orange-400 px-6 py-3 rounded-full text-sm font-semibold hover:bg-orange-50 dark:hover:bg-gray-800 transition"
           data-aos="zoom-in" data-aos-delay="300"
         >
-          {locale.learn_more}
+          {locale.cta_see_presentation}
         </a>
       </div>
     </div>

@@ -17,9 +17,6 @@ export default function Home() {
     <main className="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans">
       <Hero/>
       <WhyJoin/>
-      <Posts/>
-      <Me/>
-      <Testimonials/>
       <CallToAction/>
       <Footer/>
     </main>

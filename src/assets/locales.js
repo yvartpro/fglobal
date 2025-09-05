@@ -38,6 +38,7 @@ export const locales = {
     join_now: "Join Now",
     join_now_desc: "Ready to take the leap? Join us today and start your journey towards financial freedom and global impact.",
     join_now_button: "Join Now",
+    why_btn: "Watch video presentation now",
     //motivation section
     mot_title: "Real Stories. Real Impact.",
     mot_sub: "These people started with humble beginnings — and now lead businesses that impact nations.",
@@ -230,6 +231,7 @@ export const locales = {
     join_now: "Rejoignez-nous maintenant",
     join_now_desc: "Prêt à faire le saut ? Rejoignez-nous aujourd'hui et commencez votre voyage vers la liberté financière et l'impact mondial.",
     join_now_button: "Rejoignez-nous maintenant",
+    why_btn: "Regarder la présentation maintenant",
     // motivation section
     mot_title: "Histoires réelles. Impact réel.",
     mot_sub: "Ces personnes ont commencé avec des débuts modestes — et dirigent maintenant des entreprises qui impactent les nations.",
