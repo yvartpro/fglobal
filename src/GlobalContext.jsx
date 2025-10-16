@@ -12,8 +12,6 @@ export const GlobalProvider = ({children}) => {
   return () => clearTimeout(timeout);
 }, [country]);
 
-
-
     const [testimonials, setTestimonials] = useState([])
     const [presentations, setPresentations] = useState([])
     const [presentation, setPresentation] = useState([])
