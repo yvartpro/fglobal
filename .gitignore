@@ -1,7 +1,9 @@
 # Vite build output
 dist/
+dist.zip
 
 # Node.js
+public/
 node_modules/
 .env
 .env.local

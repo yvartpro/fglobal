@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react"
+import axios from 'axios'
 
 
 const GlobalContext = createContext()
@@ -9,9 +10,11 @@ export const GlobalProvider = ({children}) => {
     localStorage.setItem("country", country);
   }, 300); // debounce save
 
+
   return () => clearTimeout(timeout);
 }, [country]);
 
+    const [ phoneNumbers, setPhoneNumbers] = useState(null)
     const [testimonials, setTestimonials] = useState([])
     const [presentations, setPresentations] = useState([])
     const [presentation, setPresentation] = useState([])
@@ -26,10 +29,12 @@ export const GlobalProvider = ({children}) => {
     const [loadingPosts, setLoadingPosts] = useState(true)
     const [loadingPackages, setLoadingPackages] = useState(true)
     const [loadingPackage, setLoadingPackage] = useState(true)
+    const [loadingPhones, setLoadingPhones] = useState(false)
     return(
         <GlobalContext.Provider
         value={{
             country, setCountry,
+            phoneNumbers, setPhoneNumbers,
             testimonials, setTestimonials,
             presentations, setPresentations,
             presentation, setPresentation,
@@ -43,7 +48,8 @@ export const GlobalProvider = ({children}) => {
             loadingVideo, setLoadingVideo,
             loadingPackages, setLoadingPackages,
             loadingPackage, setLoadingPackage,
-            loadingPosts, setLoadingPosts
+            loadingPosts, setLoadingPosts,
+            loadingPhones, setLoadingPhones
         }}>
             {children}
         </GlobalContext.Provider>
