@@ -22,7 +22,7 @@ import { locales } from "./assets/locales"
 
 const App = () => {
 const WHATSAPP_NUMBER = useWhatsAppNumber()
-  const { setTestimonials, setPresentations, posts, setLoadingVideo, setLoadingPosts, setPresentation, setPosts, country, language, setLocale, setProducts, setRawProducts } = useGlobalContext()
+  const { setTestimonials, setPresentations, setPhoneNumbers, setLoadingPhones, setLoadingVideo, setLoadingPosts, setPresentation, setPosts, country, language, setLocale, setProducts, setRawProducts } = useGlobalContext()
   const [videos, setVideos] = useState([])
   
   //refresh when country changes
@@ -42,6 +42,11 @@ const WHATSAPP_NUMBER = useWhatsAppNumber()
   }, [country]);
 
   useEffect(() => {
+    setLoadingPhones(true)
+    axios.get("https://ferdinandglobal.com/api/care/")
+      .then(resp => setPhoneNumbers(resp.data))
+      .catch(err => console.error(err?.response || err.message))
+      .finally(() => setLoadingPhones(false))
     axios.get("https://ferdinandglobal.com/api/videos/")
       .then(resp => {
         setVideos(resp.data)
