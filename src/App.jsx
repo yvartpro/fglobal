@@ -14,17 +14,16 @@ import "aos/dist/aos.css"
 import { WhatsAppFab } from "./components/WhatsAppFab"
 import About from "./pages/About"
 import Blog from "./pages/Blog"
-import { WhatsAppNumberContext, useWhatsAppNumber } from "./WhatsAppNumberContext"
+import { WhatsAppNumberContext } from "./WhatsAppNumberContext"
 import axios from "axios"
 import { useGlobalContext } from "./GlobalContext"
 import { locales } from "./assets/locales"
 
 
 const App = () => {
-const WHATSAPP_NUMBER = useWhatsAppNumber()
   const { setTestimonials, setPresentations, setPhoneNumbers, setLoadingPhones, setLoadingVideo, setLoadingPosts, setPresentation, setPosts, country, language, setLocale, setProducts, setRawProducts } = useGlobalContext()
   const [videos, setVideos] = useState([])
-  
+
   //refresh when country changes
   const firstLoad = useRef(true);
   const prevCountry = useRef(country);
@@ -82,27 +81,27 @@ const WHATSAPP_NUMBER = useWhatsAppNumber()
   useEffect(() => {
     setLocale(locales[language] || locales["english"])
   }, [language])
-  
+
   return (
-    <WhatsAppNumberContext.Provider value={WHATSAPP_NUMBER}>
-      <Header/>
-      <WhatsAppFab/>
+    <>
+      <Header />
+      <WhatsAppFab />
       <Router>
         <Routes>
-          <Route path="/login" element={<Login/>}/>
-          <Route path="/" element={<Home/>}/>
-          <Route path="/presentation/:country" element={<PresentationDRC/>}/>
-          <Route path="/join/:country" element={<Join/>}/>
-          <Route path="/products" element={<Products/>}/>
-          <Route path="/products/:country" element={<Products/>}/>
-          <Route path="/testimonials" element={<Testimonials/>}/>
-          <Route path="/contact" element={<Contact/>}/>
-          <Route path="/blog" element={<Blog/>}/>
-          <Route path="/about" element={<About/>}/>
-          <Route path="/message" element={<Messages/>}/>
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/presentation/:country" element={<PresentationDRC />} />
+          <Route path="/join/:country" element={<Join />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/:country" element={<Products />} />
+          <Route path="/testimonials" element={<Testimonials />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/message" element={<Messages />} />
         </Routes>
       </Router>
-    </WhatsAppNumberContext.Provider>
+    </>
   )
 }
 
