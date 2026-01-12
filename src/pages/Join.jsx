@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react"
-import { useNavigate, useLocation } from "react-router-dom"
 import { FAQ } from "../components/Faq"
 import { useWhatsAppNumber } from "../WhatsAppNumberContext"
 import { useGlobalContext } from "../GlobalContext"
 import axios from "axios"
 import { useSearchParams } from "react-router-dom"
 import { JoinPageShimmer } from "../components/JoinShimmer"
+import { CountryFallback } from "../components/CountryFallback"
 
 export default function JoinPage() {
-  const navigate = useNavigate()
-  const location = useLocation()
-  const { country, locale, currency, loadingPackage, setLoadingPackage } = useGlobalContext()
+  const { country, locale, currency, setLoadingPackage } = useGlobalContext()
   const whatsappNumber = useWhatsAppNumber()
   const [pack, setPackage] = useState(null)
   const [searchParams] = useSearchParams()
@@ -22,7 +20,7 @@ export default function JoinPage() {
     axios.get(`https://ferdinandglobal.com/api/package/${packId}/`)
       .then(resp => setLoadingPackage(false) || setPackage(resp.data))
       .catch(err => console.error("Error fething package: ", err))
-  }, [country, packId])
+  }, [country, packId, setLoadingPackage])
 
   const message = encodeURIComponent(
     pack
@@ -32,27 +30,16 @@ export default function JoinPage() {
   const whatsappLink = `https://wa.me/${whatsappNumber.replace(/[^\d]/g, "")}?text=${message}`;
 
   if (!country) {
-    return (
-      <main className="min-h-screen flex items-center justify-center text-gray-500 dark:text-gray-400">
-      {/* back to home button gracefully */}
-        <p className="text-center">
-          {locale.p_fallback}
-        </p>
-        {/* button */}
-        <a href="/" className="text-blue-500 hover:underline mt-4">
-          {locale.go_back_home}
-        </a>
-      </main>
-    )
+    return <CountryFallback target="join" />
   }
 
 
   return (
     <main className="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans">
       {/* Hero & Package Presentation */}
-    { pack ? (<> <section className="px-4 py-16 bg-gradient-to-t from-orange-100 to-white dark:from-gray-800 dark:to-gray-900 border-b dark:border-gray-700">
-      <div className="max-w-3xl mx-auto flex flex-col md:flex-row items-center gap-10" data-aos="fade-up" data-aos-duration="700">
-       
+      {pack ? (<> <section className="px-4 py-16 bg-gradient-to-t from-orange-100 to-white dark:from-gray-800 dark:to-gray-900 border-b dark:border-gray-700">
+        <div className="max-w-3xl mx-auto flex flex-col md:flex-row items-center gap-10" data-aos="fade-up" data-aos-duration="700">
+
           <>
             <div className="w-full md:w-1/2 flex justify-center items-center">
               <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg border-2 border-orange-400 p-4 flex flex-col items-center w-full">
@@ -96,86 +83,86 @@ export default function JoinPage() {
               </a>
             </div>
           </>
-        
-      </div>
-    </section>
 
-      {/* Bonuses & Profits */}
-     
-      <section className="px-4 py-10 bg-white dark:bg-gray-900 border-b dark:border-gray-700" data-aos="fade-up" data-aos-duration="700">
-        <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-orange-50 dark:bg-gray-800 rounded-lg shadow p-6" data-aos="fade-right" data-aos-delay="100">
-            <h3 className="font-bold text-orange-500 dark:text-orange-400 mb-2">{locale.j_ref}</h3>
-            <p className="mb-2">
-              {locale.j_ref_desc} <span className="font-bold">{pack.package_name}</span> {locale.j_ref_at} 
-              <span className="font-bold"> {pack.price} {currency}</span> {locale.j_ref_earn} 
-              <span className="font-bold">{pack.ref_bonus} {currency}</span> {locale.j_ref_instantly}
-            </p>
-            <ul className="list-disc list-inside ml-4">
-              <li>{pack.ref_bonus} {currency}</li>
-              <li>
-                {locale.j_ref_refer3} → 3 x {pack.ref_bonus} {currency} = {3 * pack.ref_bonus} {currency}
-              </li>
-              <li>
-                {locale.j_ref_refer10} → 10 x {pack.ref_bonus} {currency} = {10 * pack.ref_bonus} {currency}
-              </li>
-            </ul>
-            <p className="mt-2">
-              ✅ {locale.j_ref_unlimited}
-            </p>
-          </div>
-
-          <div className="bg-orange-50 dark:bg-gray-800 rounded-lg shadow p-6" data-aos="fade-left" data-aos-delay="200">
-            <h3 className="font-bold text-orange-500 dark:text-orange-400 mb-2">{locale.j_pairing}</h3>
-            <p className="mb-2">
-              {locale.j_pairing_earn} 
-              <span className="font-bold"> {pack.pair_bonus} {currency}</span> 
-              {locale.j_pairing_condition}
-            </p>
-            <ul className="list-decimal list-inside ml-4">
-              <li>
-                {locale.j_pairing_example1} → 
-                {locale.j_earn || "Earn"} {pack.pair_bonus} {currency}
-              </li>
-              <li>
-                {locale.j_pairing_example2} {pack.pair_bonus} {currency} 
-                ({locale.j_unlimited_times})
-              </li>
-            </ul>
-            <p className="mt-2">🔁 {locale.j_pairing_footer}</p>
-          </div>
         </div>
       </section>
 
+        {/* Bonuses & Profits */}
 
-
-      {/* Steps to Join */}
-      
-        <section className="px-4 py-10 bg-gray-50 dark:bg-gray-800 border-b dark:border-gray-700" data-aos="fade-up" data-aos-duration="700">
-            <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-white dark:bg-gray-900 rounded-lg shadow p-6 flex flex-col justify-center" data-aos="fade-right" data-aos-delay="100">
-                <h3 className="font-bold text-orange-500 dark:text-orange-400 mb-4">{locale.j_steps}</h3>
-                <p className="mb-4 text-gray-700 dark:text-gray-300">{locale.j_steps_desc}</p>
-                <ul className="list-decimal list-inside text-gray-700 dark:text-gray-300 space-y-2">
-                  <li>{locale.j_steps_1} <span className="font-bold">{pack.price} {currency}</span></li>
-                  <li>{locale.j_steps_2}</li>
-                  <li>{locale.j_steps_3}</li>
-                </ul>
-              </div>
-              <div className="bg-white dark:bg-gray-900 rounded-lg shadow p-6 flex flex-col justify-center" data-aos="fade-left" data-aos-delay="200">
-                <h3 className="font-bold text-orange-500 dark:text-orange-400 mb-4">{locale.j_benefits}</h3>
-                <p className="mb-4 text-gray-700 dark:text-gray-300">{locale.j_benefits_desc}</p>
-                <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-2">
-                  <li>✅ {pack.account} {locale.j_benefits_1}</li>
-                  <li>✅ {locale.j_benefits_2}</li>
-                  <li>✅ {locale.j_benefits_3}</li>
-                  <li>✅ {locale.j_benefits_4}</li>
-                  <li>✅ {locale.j_benefits_5}</li>
-                </ul>
-              </div>
+        <section className="px-4 py-10 bg-white dark:bg-gray-900 border-b dark:border-gray-700" data-aos="fade-up" data-aos-duration="700">
+          <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-orange-50 dark:bg-gray-800 rounded-lg shadow p-6" data-aos="fade-right" data-aos-delay="100">
+              <h3 className="font-bold text-orange-500 dark:text-orange-400 mb-2">{locale.j_ref}</h3>
+              <p className="mb-2">
+                {locale.j_ref_desc} <span className="font-bold">{pack.package_name}</span> {locale.j_ref_at}
+                <span className="font-bold"> {pack.price} {currency}</span> {locale.j_ref_earn}
+                <span className="font-bold">{pack.ref_bonus} {currency}</span> {locale.j_ref_instantly}
+              </p>
+              <ul className="list-disc list-inside ml-4">
+                <li>{pack.ref_bonus} {currency}</li>
+                <li>
+                  {locale.j_ref_refer3} → 3 x {pack.ref_bonus} {currency} = {3 * pack.ref_bonus} {currency}
+                </li>
+                <li>
+                  {locale.j_ref_refer10} → 10 x {pack.ref_bonus} {currency} = {10 * pack.ref_bonus} {currency}
+                </li>
+              </ul>
+              <p className="mt-2">
+                ✅ {locale.j_ref_unlimited}
+              </p>
             </div>
-          </section>
-      </>) : (<JoinPageShimmer/>)}
+
+            <div className="bg-orange-50 dark:bg-gray-800 rounded-lg shadow p-6" data-aos="fade-left" data-aos-delay="200">
+              <h3 className="font-bold text-orange-500 dark:text-orange-400 mb-2">{locale.j_pairing}</h3>
+              <p className="mb-2">
+                {locale.j_pairing_earn}
+                <span className="font-bold"> {pack.pair_bonus} {currency}</span>
+                {locale.j_pairing_condition}
+              </p>
+              <ul className="list-decimal list-inside ml-4">
+                <li>
+                  {locale.j_pairing_example1} →
+                  {locale.j_earn || "Earn"} {pack.pair_bonus} {currency}
+                </li>
+                <li>
+                  {locale.j_pairing_example2} {pack.pair_bonus} {currency}
+                  ({locale.j_unlimited_times})
+                </li>
+              </ul>
+              <p className="mt-2">🔁 {locale.j_pairing_footer}</p>
+            </div>
+          </div>
+        </section>
+
+
+
+        {/* Steps to Join */}
+
+        <section className="px-4 py-10 bg-gray-50 dark:bg-gray-800 border-b dark:border-gray-700" data-aos="fade-up" data-aos-duration="700">
+          <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-white dark:bg-gray-900 rounded-lg shadow p-6 flex flex-col justify-center" data-aos="fade-right" data-aos-delay="100">
+              <h3 className="font-bold text-orange-500 dark:text-orange-400 mb-4">{locale.j_steps}</h3>
+              <p className="mb-4 text-gray-700 dark:text-gray-300">{locale.j_steps_desc}</p>
+              <ul className="list-decimal list-inside text-gray-700 dark:text-gray-300 space-y-2">
+                <li>{locale.j_steps_1} <span className="font-bold">{pack.price} {currency}</span></li>
+                <li>{locale.j_steps_2}</li>
+                <li>{locale.j_steps_3}</li>
+              </ul>
+            </div>
+            <div className="bg-white dark:bg-gray-900 rounded-lg shadow p-6 flex flex-col justify-center" data-aos="fade-left" data-aos-delay="200">
+              <h3 className="font-bold text-orange-500 dark:text-orange-400 mb-4">{locale.j_benefits}</h3>
+              <p className="mb-4 text-gray-700 dark:text-gray-300">{locale.j_benefits_desc}</p>
+              <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-2">
+                <li>✅ {pack.account} {locale.j_benefits_1}</li>
+                <li>✅ {locale.j_benefits_2}</li>
+                <li>✅ {locale.j_benefits_3}</li>
+                <li>✅ {locale.j_benefits_4}</li>
+                <li>✅ {locale.j_benefits_5}</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </>) : (<JoinPageShimmer />)}
 
       {/* CTA */}
       {/* CTA */}
@@ -197,7 +184,7 @@ export default function JoinPage() {
           </div>
         </div>
       </section>
-      <FAQ/>
+      <FAQ />
     </main>
   )
 }

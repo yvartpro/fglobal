@@ -1,11 +1,12 @@
-import { useEffect, useState }  from "react"
+import { useEffect, useState } from "react"
 import { FAQ } from "../components/Faq"
 import { VideoPlayer } from "../components/VideoPlayer"
 import { cashFlow } from "../assets/cashFlow"
 import { useWhatsAppNumber } from "../WhatsAppNumberContext"
 import { useGlobalContext } from "../GlobalContext"
-import { CardShimmer} from "../components/CardShimmer"
+import { CardShimmer } from "../components/CardShimmer"
 import axios from "axios"
+import { CountryFallback } from "../components/CountryFallback"
 
 export default function PresentationPage() {
   const { country, locale, presentation, loadingVideo, currency, setLoadingPackages, loadingPackages } = useGlobalContext()
@@ -14,22 +15,18 @@ export default function PresentationPage() {
   const [packages, setPackages] = useState([])
   const message = encodeURIComponent(`Hello Ferdinand, I want to know more about Ferdinand Global services.`);
   const whatsappLink = `https://wa.me/${whatsappNumber.replace(/[^\d]/g, "")}?text=${message}`;
-console.log(presentation)
+  console.log(presentation)
   useEffect(() => {
     if (country) document.title = `Presentation - ${country.toUpperCase()}`
     axios.get("https://www.ferdinandglobal.com/api/package/")
-    .then(resp => {
-       setPackages(resp.data)
-       setLoadingPackages(false)
-    })
-    .catch(err =>console.error(err))
-  }, [country])
+      .then(resp => {
+        setPackages(resp.data)
+        setLoadingPackages(false)
+      })
+      .catch(err => console.error(err))
+  }, [country, setLoadingPackages])
   if (!country) {
-    return (
-      <main className="min-h-screen flex items-center justify-center text-gray-500 dark:text-gray-400">
-        {locale.p_fallback }
-      </main>
-    )
+    return <CountryFallback target="presentation" />
   }
 
   // Filter packages for selected country
@@ -91,20 +88,20 @@ console.log(presentation)
               {locale.pre_sure}
             </p>
           </div>
-{loadingVideo ? (
-  <ShimmerPlaceholder />
-) : (
-  presentation.map((p, i) => (
-    <div key={i} className="p-6 my-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:shadow-lg transition-shadow">
-      <VideoPlayer src={p.videos} poster={p.poster} />
-      <h3 className="font-semibold mt-4 text-gray-800 dark:text-gray-100">{p.titre}</h3>
-      <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">{p.detail}</p>
-    </div>
-  ))
-)}
+          {loadingVideo ? (
+            <ShimmerPlaceholder />
+          ) : (
+            presentation.map((p, i) => (
+              <div key={i} className="p-6 my-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:shadow-lg transition-shadow">
+                <VideoPlayer src={p.videos} poster={p.poster} />
+                <h3 className="font-semibold mt-4 text-gray-800 dark:text-gray-100">{p.titre}</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">{p.detail}</p>
+              </div>
+            ))
+          )}
         </div>
       </section>
-       {/* Available Packages for Country */}
+      {/* Available Packages for Country */}
       <section className="px-4 py-20 bg-gray-100 dark:bg-gray-800">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-xl font-semibold text-center text-gray-800 dark:text-white mb-4" data-aos="fade-up" data-aos-duration="700">
@@ -113,39 +110,39 @@ console.log(presentation)
           <p className="text-base text-center text-gray-700 dark:text-gray-300 mb-10" data-aos="fade-up" data-aos-delay="100">
             {locale.pre_choose_pack_desc}
           </p>
-         
+
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-           { loadingPackages ? Array.from({ length: 4 }).map((_, idx) => <CardShimmer key={idx} /> ) : 
-            countryPackages.map((pkg, idx) => (
-              <div
-                key={idx}
-                className="bg-white dark:bg-gray-900 rounded-lg border border-orange-400 p-6 shadow-md flex flex-col items-center"
-                data-aos="fade-up"
-                data-aos-delay={idx * 100}
-              >
-                <div className="w-full flex justify-center mb-4">
-                  <img
-                    src={pkg.photo}
-                    alt={pkg.package_name}
-                    className="w-full max-w-xs h-auto object-contain rounded shadow"
-                    style={{ aspectRatio: '1.2/1' }}
-                  />
-                </div>
-                <h3 className="font-bold text-lg text-orange-500 dark:text-orange-400 mb-2 text-center">{pkg.package_name}</h3>
-                <p className="text-gray-700 dark:text-gray-300 mb-4 text-center">
-                  <span className="font-bold text-xl">{pkg.price} {currency}</span>
-                </p>
-                <a
-                  href={`/join/${country}?package=${encodeURIComponent(pkg.id)}`}
-                  className="bg-orange-500 text-white font-semibold px-6 py-2 rounded-full hover:bg-orange-600 transition w-full text-center"
+            {loadingPackages ? Array.from({ length: 4 }).map((_, idx) => <CardShimmer key={idx} />) :
+              countryPackages.map((pkg, idx) => (
+                <div
+                  key={idx}
+                  className="bg-white dark:bg-gray-900 rounded-lg border border-orange-400 p-6 shadow-md flex flex-col items-center"
+                  data-aos="fade-up"
+                  data-aos-delay={idx * 100}
                 >
-                  {locale.more_info}
-                </a>
-              </div>
-            ))}
+                  <div className="w-full flex justify-center mb-4">
+                    <img
+                      src={pkg.photo}
+                      alt={pkg.package_name}
+                      className="w-full max-w-xs h-auto object-contain rounded shadow"
+                      style={{ aspectRatio: '1.2/1' }}
+                    />
+                  </div>
+                  <h3 className="font-bold text-lg text-orange-500 dark:text-orange-400 mb-2 text-center">{pkg.package_name}</h3>
+                  <p className="text-gray-700 dark:text-gray-300 mb-4 text-center">
+                    <span className="font-bold text-xl">{pkg.price} {currency}</span>
+                  </p>
+                  <a
+                    href={`/join/${country}?package=${encodeURIComponent(pkg.id)}`}
+                    className="bg-orange-500 text-white font-semibold px-6 py-2 rounded-full hover:bg-orange-600 transition w-full text-center"
+                  >
+                    {locale.more_info}
+                  </a>
+                </div>
+              ))}
           </div>
         </div>
-      </section> 
+      </section>
       {/* CTA */}
       <section className="px-4 py-16 bg-orange-400 dark:bg-orange-500 text-white text-center">
         <div className="max-w-xl mx-auto space-y-4" data-aos="zoom-in" data-aos-duration="700">
@@ -167,7 +164,7 @@ console.log(presentation)
           </div>
         </div>
       </section>
-      <FAQ/>
+      <FAQ />
     </main>
   )
 }

@@ -14,6 +14,7 @@ import "aos/dist/aos.css"
 import { WhatsAppFab } from "./components/WhatsAppFab"
 import About from "./pages/About"
 import Blog from "./pages/Blog"
+import { CountryFallback } from "./components/CountryFallback"
 import { WhatsAppNumberContext } from "./WhatsAppNumberContext"
 import axios from "axios"
 import { useGlobalContext } from "./GlobalContext"
@@ -92,13 +93,15 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/presentation/:country" element={<PresentationDRC />} />
           <Route path="/join/:country" element={<Join />} />
-          <Route path="/products" element={<Products />} />
           <Route path="/products/:country" element={<Products />} />
           <Route path="/testimonials" element={<Testimonials />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/about" element={<About />} />
           <Route path="/message" element={<Messages />} />
+          <Route path="/presentation" element={<CountryFallback target="presentation" />} />
+          <Route path="/join" element={<CountryFallback target="join" />} />
+          <Route path="/products" element={<CountryFallback target="products" />} />
         </Routes>
       </Router>
     </>
