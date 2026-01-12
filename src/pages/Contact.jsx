@@ -3,7 +3,7 @@ import { useWhatsAppNumber } from "../WhatsAppNumberContext";
 import { useGlobalContext } from '../GlobalContext'
 
 export default function Contact() {
-  const { locale } = useGlobalContext()
+  const { locale, phoneNumbers } = useGlobalContext()
   const whatsappNumber = useWhatsAppNumber();
   const [form, setForm] = useState({ name: "", email: "", phone: "", subject: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
@@ -11,7 +11,7 @@ export default function Contact() {
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
-
+  const phoneCallNumber = phoneNumbers?.find(phone => phone.name === "Appel")
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
@@ -31,7 +31,7 @@ export default function Contact() {
           </p>
           <div className="space-y-3 mb-6">
             <div data-aos="fade-up" data-aos-delay="200"><strong className="text-secondary-light dark:text-secondary-dark">{locale.contact_email}</strong> <a href="mailto:ferdmbonimpa@gmail.com" className="text-orange-500">ferdmbonimpa@gmail.com</a></div>
-            <div data-aos="fade-up" data-aos-delay="250"><strong className="text-secondary-light dark:text-secondary-dark">{locale.contact_phone}</strong> <a href={`tel:${whatsappNumber}`} className="text-orange-500">+{whatsappNumber}</a></div>
+            <div data-aos="fade-up" data-aos-delay="250"><strong className="text-secondary-light dark:text-secondary-dark">{locale.contact_phone}</strong> <a href={`tel:${phoneCallNumber?.phone}`} className="text-orange-500">+{phoneCallNumber?.phone}</a></div>
             <div data-aos="fade-up" data-aos-delay="300"><strong className="text-secondary-light dark:text-secondary-dark">{locale.contact_address}</strong> <span className="text-gray-600 dark:text-white">123 Ferdinand Global St, City, Country</span></div>
             <div data-aos="fade-up" data-aos-delay="350"><strong className="text-secondary-light dark:text-secondary-dark">{locale.contact_hours}</strong> <span className="text-gray-600 dark:text-white">{locale.contact_hours_value}</span></div>
             <div data-aos="fade-up" data-aos-delay="400"><strong className="text-secondary-light dark:text-secondary-dark">{locale.contact_whatsapp}</strong> <a href={`https://wa.me/${whatsappNumber.replace(/[^\d]/g, "")}`} className="text-orange-500">{locale.contact_chat_whatsapp}</a></div>
